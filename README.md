@@ -2,12 +2,12 @@
 
 a polymer element that fires an event once a user types in the konami code. the event can be listened to in order to fire custom callbacks. custom key combinations can also be passed to the element to be used instead of the konami code default.
 
-## Installation & usage
+## Installation & Usage
 
 Install polymer-konami with Bower
 
 ```sh
-$ bower i /polymer-konami --save
+$ bower i polymer-konami --save
 ```
 
 Import it into the `<head>` of your page

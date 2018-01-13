@@ -67,7 +67,6 @@
       }
 
       _isExpectedKey(event) {
-        console.log(event);
         const expectedKey = this._konamiCode[this._indexTracker];
         return Polymer.IronA11yKeysBehavior.keyboardEventMatchesKeys(event, expectedKey);
       }
