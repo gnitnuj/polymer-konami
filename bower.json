@@ -1,0 +1,27 @@
+{
+  "name": "polymer-konami",
+  "version": "0.0.0",
+  "authors": ["Gnitnuj"],
+  "description":
+    "a polymer element that fires an event once a user types in the konami code. the event can be listened to in order to fire custom callbacks. custom key combinations can also be passed to the element to be used instead of the konami code default.",
+  "keywords": [
+    "web-components",
+    "custom-element",
+    "polymer-konami",
+    "konami",
+    "cheat-code"
+  ],
+  "main": "polymer-konami.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0",
+    "iron-a11y-keys-behavior": "PolymerElements/iron-a11y-keys-behavior#^2.0.0"
+  },
+  "devDependencies": {
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
+    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+  },
+  "resolutions": {
+    "polymer": "^2.0.0"
+  }
+}

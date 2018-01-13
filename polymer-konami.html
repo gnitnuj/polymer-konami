@@ -1,0 +1,82 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
+
+<dom-module id="polymer-konami">
+  <script>
+    /**
+     * `polymer-konami`
+     * a polymer element that fires an event once a user types in the konami code. the event can be listened to in order to fire custom callbacks. custom key combinations can also be passed to the element to be used instead of the konami code default.
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class PolymerKonami extends Polymer.Element {
+      static get is() { return 'polymer-konami'; }
+
+      static get properties() {
+        return {
+          _konamiCode: {
+            type: Array,
+            value: () => {
+              return [
+                'up',
+                'up',
+                'down',
+                'down',
+                'left',
+                'right',
+                'left',
+                'right',
+                'b',
+                'a'
+              ];
+            }
+          },
+          _indexTracker: {
+            type: Number,
+            value: 0
+          },
+          _keydownListener: {
+            type: Object
+          }
+        };
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        this._keydownListener = this._customKeydownListener.bind(this);
+        document.body.addEventListener('keydown', this._keydownListener);
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        document.body.removeEventListener('keydown', this._keydownListener);
+      }
+
+      _customKeydownListener(event) {
+        if (this._isExpectedKey(event)) {
+          this._indexTracker += 1;
+        } else {
+          this._indexTracker = 0;
+        }
+        if (this._isCodeComplete()) {
+          this.dispatchEvent(new CustomEvent('konami-completed'));
+          this._indexTracker = 0;
+        }
+      }
+
+      _isExpectedKey(event) {
+        console.log(event);
+        const expectedKey = this._konamiCode[this._indexTracker];
+        return Polymer.IronA11yKeysBehavior.keyboardEventMatchesKeys(event, expectedKey);
+      }
+
+      _isCodeComplete() {
+        return this._indexTracker === this._konamiCode.length;
+      }
+    }
+
+    window.customElements.define(PolymerKonami.is, PolymerKonami);
+  </script>
+</dom-module>
