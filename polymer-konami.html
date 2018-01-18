@@ -20,6 +20,10 @@
         if (this.attributes.customKeys) {
           this._konamiCode = this.attributes.customKeys.value.split(',');
         }
+
+        if (this.attributes.customEventName) {
+          this._customEventName = this.attributes.customEventName.value;
+        }
       }
 
       static get properties() {
@@ -40,6 +44,10 @@
                 'a'
               ];
             }
+          },
+          _customEventName: {
+            type: String,
+            value: 'konami-completed'
           },
           _indexTracker: {
             type: Number,
@@ -70,7 +78,7 @@
           this._indexTracker = 0;
         }
         if (this._isCodeComplete()) {
-          this.dispatchEvent(new CustomEvent('konami-completed'));
+          this.dispatchEvent(new CustomEvent(this._customEventName));
           this._indexTracker = 0;
         }
       }

@@ -26,12 +26,12 @@
       <template>
         <polymer-konami></polymer-konami>
 
-        <p>Type the Konami Code to launch the easter egg. (↑↑↓↓←→←→BA)</p>
+        <p>Type the Konami Code to fire the event. (↑↑↓↓←→←→BA)</p>
 
         <script>
-          const konamiCode = document.querySelector('polymer-konami');
+          const polymerKonami = document.querySelector('polymer-konami');
 
-          konamiCode.addEventListener('konami-completed', e => {
+          polymerKonami.addEventListener('konami-completed', e => {
             alert('↑↑↓↓←→←→BA entered!');
           });
         </script>
@@ -48,13 +48,36 @@
 
         <polymer-konami customKeys="1,2,3,4,5"></polymer-konami>
 
-        <p>Type the customKeys to launch the easter egg. (12345)</p>
+        <p>Type the customKeys to fire the event. (12345)</p>
 
         <script>
-          const konamiCode2 = document.querySelectorAll('polymer-konami')[1];
+          const polymerKonami2 = document.querySelectorAll('polymer-konami')[1];
 
-          konamiCode2.addEventListener('konami-completed', e => {
+          polymerKonami2.addEventListener('konami-completed', e => {
             alert('12345 entered!');
+          });
+        </script>
+      </template>
+    </demo-snippet>
+  </div>
+
+  <div class="vertical-section-container centered">
+    <h3>custom event name demo</h3>
+    <demo-snippet>
+      <template>
+        <!-- you can optionally pass a list of comma-seperated keys -->
+        <!-- which will be used to override the default code keys -->
+
+        <polymer-konami customEventName="custom event name" customKeys="c,u,s,t,o,m,e,v,e,n,t">
+        </polymer-konami>
+
+        <p>Type customevent to fire the event. (customevent)</p>
+
+        <script>
+          const polymerKonami3 = document.querySelectorAll('polymer-konami')[2];
+
+          polymerKonami3.addEventListener('custom event name', e => {
+            alert('fired using a custom event name!');
           });
         </script>
       </template>
