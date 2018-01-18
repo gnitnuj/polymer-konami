@@ -21,16 +21,40 @@
 
 <body>
   <div class="vertical-section-container centered">
-    <h3>basic(default) polymer-konami demo</h3>
+    <h3>default demo</h3>
     <demo-snippet>
       <template>
         <polymer-konami></polymer-konami>
+
+        <p>Type the Konami Code to launch the easter egg. (↑↑↓↓←→←→BA)</p>
 
         <script>
           const konamiCode = document.querySelector('polymer-konami');
 
           konamiCode.addEventListener('konami-completed', e => {
-            alert('moo!');
+            alert('↑↑↓↓←→←→BA entered!');
+          });
+        </script>
+      </template>
+    </demo-snippet>
+  </div>
+
+  <div class="vertical-section-container centered">
+    <h3>custom keys demo</h3>
+    <demo-snippet>
+      <template>
+        <!-- you can optionally pass a list of comma-seperated keys -->
+        <!-- which will be used to override the default code keys -->
+
+        <polymer-konami customKeys="1,2,3,4,5"></polymer-konami>
+
+        <p>Type the customKeys to launch the easter egg. (12345)</p>
+
+        <script>
+          const konamiCode2 = document.querySelectorAll('polymer-konami')[1];
+
+          konamiCode2.addEventListener('konami-completed', e => {
+            alert('12345 entered!');
           });
         </script>
       </template>
